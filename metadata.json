@@ -1,0 +1,5 @@
+{
+  "name": "Time-Series Forecasting Dashboard",
+  "description": "An advanced data visualization dashboard for time-series forecasting analysis, featuring interactive charts for comparing Machine Learning and Deep Learning models.",
+  "requestFramePermissions": []
+}
