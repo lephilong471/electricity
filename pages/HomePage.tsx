@@ -35,13 +35,13 @@ const HomePage: React.FC = () => {
           muted
           playsInline
           className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          src="https://videos.pexels.com/video-files/3187652/3187652-hd_1920_1080_25fps.mp4"
+          src="lightning-storm-animation-background.mp4"
         />
-        <div className="absolute top-0 left-0 w-full h-full bg-light-background/50 dark:bg-background/70 z-10"></div>
+        {/* <div className="absolute top-0 left-0 w-full h-full bg-light-background/50 dark:bg-background/70 z-10"></div> */}
         
         <div className="relative z-20 w-full h-full flex flex-col gap-8">
             <h1 className="text-4xl sm:text-5xl font-bold text-light-text-primary dark:text-text-primary text-center pt-8">Model Performance Over Time</h1>
-            <div className="w-full flex-1 h-[70vh] bg-light-card/80 dark:bg-card/80 backdrop-blur-sm p-6 rounded-lg shadow-lg dark:shadow-glow border border-light-border dark:border-border">
+            <div className="w-full flex-1 h-[70vh] bg-light-card/80 dark:bg-card/80 backdrop-blur-sm mt-6 p-6 rounded-lg shadow-lg dark:shadow-glow border border-light-border dark:border-border">
                 <ResponsiveContainer width="100%" height="100%">
                     <LineChart
                         data={timeSeriesData}
