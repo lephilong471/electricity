@@ -3,19 +3,6 @@ export interface TimeSeriesData {
   value: number;
 }
 
-export interface MLEvaluationChartData {
-  name: string;
-  'Random Forest': number;
-  'XGBoost': number;
-}
-
-// FIX: Changed interface to type to correctly use a mapped type.
-// An interface cannot directly contain a mapped type like `[key in Metric]`.
-export type FullMLEvaluationData = {
-    [key in Metric]?: MLEvaluationChartData[];
-};
-
-
 export interface DLEvaluationData {
   model: string;
   value: number;

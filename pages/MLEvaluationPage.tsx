@@ -1,7 +1,9 @@
+
 import React, { useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, LabelList } from 'recharts';
-import { mlEvaluationData } from '../data/mockData';
-import { ML_MODELS, MODEL_COLORS } from '../constants';
+// FIX: Changed import from mlEvaluationData to dlEvaluationData and will transform it, as mlEvaluationData is not exported.
+import { dlEvaluationData } from '../data/mockData';
+import { ML_MODELS, MODEL_COLORS, DATASETS } from '../constants';
 
 const MLEvaluationPage: React.FC = () => {
   const [inactiveModels, setInactiveModels] = useState<string[]>([]);
@@ -24,7 +26,24 @@ const MLEvaluationPage: React.FC = () => {
     );
   };
 
-  const chartData = mlEvaluationData['R2'] || [];
+  // FIX: Transform dlEvaluationData to fit the chart's expected format for ML models.
+  // The original implementation had a TypeScript error due to an index signature conflict.
+  // This version uses `reduce` to correctly construct the data objects for the chart, resolving the type error.
+  const chartData = DATASETS.map(dataset => {
+    // Using a fixed forecast config as this page doesn't have selectors.
+    // The ML model scores are the same for all configs in the mock data.
+    const r2scores = dlEvaluationData[dataset]['(IN=24, OUT=1)']['R2'];
+    
+    const mlModelScores = ML_MODELS.reduce((acc, model) => {
+      acc[model] = r2scores.find(item => item.model === model)?.value;
+      return acc;
+    }, {} as {[model: string]: number | undefined});
+
+    return {
+      name: dataset,
+      ...mlModelScores
+    };
+  });
   
   return (
     <div className="w-full h-full flex flex-col gap-8">

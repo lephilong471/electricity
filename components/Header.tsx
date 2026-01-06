@@ -58,7 +58,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
                                 <path d="M2 7L12 12L22 7" stroke="currentColor" className="text-light-primary dark:text-primary" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                                 <path d="M12 12V22" stroke="currentColor" className="text-light-primary dark:text-primary" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                             </svg>
-                            <span className="text-xl font-bold text-light-text-primary dark:text-text-primary">ForecastFlow</span>
+                            <span className="text-xl font-bold text-light-text-primary dark:text-text-primary">Elvisu</span>
                         </NavLink>
                     </div>
                     <div className="hidden md:flex items-center">
@@ -88,8 +88,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
                                     </div>
                                 )}
                             </div>
-                            <NavLink to="/evaluation/ml" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeNavLinkClasses : ''}`}>ML Evaluation</NavLink>
-                            <NavLink to="/evaluation/dl" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeNavLinkClasses : ''}`}>DL Evaluation</NavLink>
+                            <NavLink to="/evaluation" className={({ isActive }) => `${navLinkClasses} ${isActive ? activeNavLinkClasses : ''}`}>Evaluation</NavLink>
                         </div>
                         <button
                             onClick={toggleTheme}
@@ -113,8 +112,7 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
                 <div className="md:hidden">
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
                         <NavLink to="/" onClick={closeAllMenus} className={({ isActive }) => `${mobileNavLinkClasses} ${isActive ? mobileActiveNavLinkClasses : ''}`}>Home</NavLink>
-                        <NavLink to="/evaluation/ml" onClick={closeAllMenus} className={({ isActive }) => `${mobileNavLinkClasses} ${isActive ? mobileActiveNavLinkClasses : ''}`}>ML Evaluation</NavLink>
-                        <NavLink to="/evaluation/dl" onClick={closeAllMenus} className={({ isActive }) => `${mobileNavLinkClasses} ${isActive ? mobileActiveNavLinkClasses : ''}`}>DL Evaluation</NavLink>
+                        <NavLink to="/evaluation" onClick={closeAllMenus} className={({ isActive }) => `${mobileNavLinkClasses} ${isActive ? mobileActiveNavLinkClasses : ''}`}>Evaluation</NavLink>
                          <div className="border-t border-light-border dark:border-border pt-4 mt-2">
                              <p className="px-3 text-sm font-semibold text-light-text-secondary dark:text-text-secondary">Models</p>
                              <div className="mt-2 space-y-1">
