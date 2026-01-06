@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { HashRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
-import MLEvaluationPage from './pages/MLEvaluationPage';
+import EvaluationPage from './pages/EvaluationPage';
 import DLEvaluationPage from './pages/DLEvaluationPage';
 import ModelPage from './pages/ModelPage';
 
@@ -38,8 +38,7 @@ const App: React.FC = () => {
         <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
            <Routes>
               <Route path="/" element={<HomePage />} />
-              <Route path="/evaluation/ml" element={<MLEvaluationPage />} />
-              <Route path="/evaluation/dl" element={<DLEvaluationPage />} />
+              <Route path="/evaluation" element={<EvaluationPage />} />
               <Route path="/models/:modelName" element={<ModelPage />} />
            </Routes>
         </main>

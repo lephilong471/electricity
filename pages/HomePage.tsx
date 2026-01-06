@@ -28,58 +28,53 @@ const HomePage: React.FC = () => {
   };
   
   return (
-    <div className="relative w-full h-full flex flex-col gap-8 rounded-lg overflow-hidden -m-4 p-4">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-          src="lightning-storm-animation-background.mp4"
-        />
-        {/* <div className="absolute top-0 left-0 w-full h-full bg-light-background/50 dark:bg-background/70 z-10"></div> */}
-        
-        <div className="relative z-20 w-full h-full flex flex-col gap-8">
-            <h1 className="text-4xl sm:text-5xl font-bold text-light-text-primary dark:text-text-primary text-center pt-8">Model Performance Over Time</h1>
-            <div className="w-full flex-1 h-[70vh] bg-light-card/80 dark:bg-card/80 backdrop-blur-sm mt-6 p-6 rounded-lg shadow-lg dark:shadow-glow border border-light-border dark:border-border">
-                <ResponsiveContainer width="100%" height="100%">
-                    <LineChart
-                        data={timeSeriesData}
-                        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                    >
-                        <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
-                        <XAxis dataKey="date" stroke="currentColor" tick={{ fill: 'currentColor', fontSize: 12 }} />
-                        <YAxis stroke="currentColor" tick={{ fill: 'currentColor', fontSize: 12 }} />
-                        <Tooltip
-                            contentStyle={{
-                                backgroundColor: 'var(--tooltip-bg)',
-                                border: '1px solid var(--tooltip-border)',
-                            }}
-                            labelStyle={{ color: 'var(--tooltip-text)' }}
-                            itemStyle={{ color: 'var(--tooltip-text)' }}
-                        />
-                        {/* FIX: Cast e.dataKey to string as handleLegendClick expects a string. The recharts type is broad, but in this context dataKey is always a string. */}
-                        <Legend 
-                            onClick={(e) => handleLegendClick(e.dataKey as string)}
-                            formatter={renderLegendText}
-                        />
-                        <Brush dataKey="date" height={30} stroke={MODEL_COLORS.Transformer} fillOpacity={0.1} />
-                        {modelsToPlot.map(model => (
-                            <Line 
-                                key={model}
-                                type="monotone" 
-                                dataKey={model} 
-                                stroke={MODEL_COLORS[model as keyof typeof MODEL_COLORS]}
-                                strokeWidth={2} 
-                                dot={false} 
-                                activeDot={{ r: 8 }}
-                                hide={inactiveModels.includes(model)}
-                            />
-                        ))}
-                    </LineChart>
-                </ResponsiveContainer>
-            </div>
-        </div>
+    <div className="w-full h-full flex flex-col gap-6">
+      <div className="text-center">
+        <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-light-primary to-light-accent dark:from-primary dark:to-accent">
+          Model Performance Visualization
+        </h1>
+        <p className="mt-3 max-w-2xl mx-auto text-lg text-light-text-secondary dark:text-text-secondary">
+          Visualize and compare the performance of advanced forecasting models over time.
+        </p>
+      </div>
+      
+      <div className="w-full flex-1 bg-light-card dark:bg-card p-6 rounded-lg shadow-lg dark:shadow-glow border border-light-border dark:border-border">
+        <ResponsiveContainer width="100%" height="100%">
+          <LineChart
+            data={timeSeriesData}
+            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" strokeOpacity={0.1} />
+            <XAxis dataKey="date" stroke="currentColor" tick={{ fill: 'currentColor', fontSize: 12 }} />
+            <YAxis stroke="currentColor" tick={{ fill: 'currentColor', fontSize: 12 }} />
+            <Tooltip
+              contentStyle={{
+                backgroundColor: 'var(--tooltip-bg)',
+                border: '1px solid var(--tooltip-border)',
+              }}
+              labelStyle={{ color: 'var(--tooltip-text)' }}
+              itemStyle={{ color: 'var(--tooltip-text)' }}
+            />
+            <Legend 
+              onClick={(e) => handleLegendClick(e.dataKey as string)}
+              formatter={renderLegendText}
+            />
+            <Brush dataKey="date" height={30} stroke={MODEL_COLORS.Transformer} fillOpacity={0.1} />
+            {modelsToPlot.map(model => (
+              <Line 
+                key={model}
+                type="monotone" 
+                dataKey={model} 
+                stroke={MODEL_COLORS[model as keyof typeof MODEL_COLORS]}
+                strokeWidth={2} 
+                dot={false} 
+                activeDot={{ r: 8 }}
+                hide={inactiveModels.includes(model)}
+              />
+            ))}
+          </LineChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
